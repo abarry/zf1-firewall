@@ -111,7 +111,7 @@ class Devlopnet_ParamsFactory
             switch (true)
             {
                 case is_array($value):
-                    $this->_thrownerMerge($value);
+                    $this->_thrownerParams($value);
                     break;
                 case is_scalar($value):
                     break;
@@ -122,7 +122,7 @@ class Devlopnet_ParamsFactory
     }
     
     /**
-     * Fonction pillié du composant, il permet de faire un array_merge entre
+     * Fonction pilliée du composant, il permet de faire un array_merge entre
      * les données en mémoire et les données en entrée. Selon la configuration,
      * les données en mémoire seront prioritaires ou non, etc. Tout tableau peut
      * être mergé.
@@ -299,12 +299,14 @@ class Devlopnet_ParamsFactory
    
     public function assembleHiddenInputs()
     {
-        $query = str_replace(array('%5B', '%5D'), array('[', ']'), $this->assembleQuery());
+        $query = $this->assembleQuery();
         $params = explode('&', $query);
         $out = '';
         foreach ($params as $param)
         {
             list($name, $value) = explode('=', $param);
+            $name = rawurldecode($name);
+            $value = rawurldecode($value);
             $out .= '<input type="hidden" name="'
                     . $this->_view->escape($name)
                     . '" value="'
@@ -323,12 +325,14 @@ class Devlopnet_ParamsFactory
      */
     public function assembleHiddenZendElements()
     {
-        $query = str_replace(array('%5B', '%5D'), array('[', ']'), $this->assembleQuery());
+        $query = $this->assembleQuery();
         $params = explode('&', $query);
         $out = array();
         foreach ($params as $param)
         {
             list($name, $value) = explode('=', $param);
+            $name = rawurldecode($name);
+            $value = rawurldecode($value);
             preg_match('/^(.*)\\[(.*)\\]$/', $name, $simpleName);
             $belongTo = isset($simpleName[1]) ? $simpleName[1] : '';
             $simpleName = isset($simpleName[2]) ? $simpleName[2] : $name;
