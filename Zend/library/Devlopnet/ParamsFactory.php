@@ -19,7 +19,7 @@
  * Refactoring Avril 2012 : Ajout de la récursivité, des priorités, refactoring global
  * 
  * @author Devlopnet
- * @licence Free
+ * @licence CC
  * 
  */
 

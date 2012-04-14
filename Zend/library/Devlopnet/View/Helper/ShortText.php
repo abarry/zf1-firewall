@@ -2,7 +2,7 @@
 
 /**
  * @author Devlopnet
- * @licence Free
+ * @licence CC
  * 
  * ShortenText permet de récupérer une partie d'un texte, un extrait.
  * Requis : Vous devez préciser mb_internal_encoding

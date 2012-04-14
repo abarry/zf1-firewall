@@ -2,6 +2,11 @@
 
 <?php
 
+/**
+* @author Devlopnet
+* @licence CC
+*/
+
 exec("ps aux | grep php-fpm | awk '{print $11,$3,$6,$8,$12,$13}'", $result);
 
 $states = array(

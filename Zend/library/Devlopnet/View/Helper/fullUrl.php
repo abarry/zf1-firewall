@@ -2,7 +2,7 @@
 
 /**
  * @author Devlopnet
- * @license Free
+ * @license CC
  */
 
 class Devlopnet_View_Helper_FullUrl extends Zend_View_Helper_Url
