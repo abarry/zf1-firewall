@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+	<head>
+		<title>twitter</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	</head>
+	<body>
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><hr/>
+		<div id="flashContent" style="position:fixed;bottom:-13px;left:0px;">
+			<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="150" height="120" id="twitter" align="middle">
+				<param name="movie" value="twitter.swf" />
+				<param name="quality" value="high" />
+				<param name="bgcolor" value="#ffffff" />
+				<param name="play" value="true" />
+				<param name="loop" value="true" />
+				<param name="wmode" value="transparent" />
+				<param name="scale" value="showall" />
+				<param name="menu" value="true" />
+				<param name="devicefont" value="false" />
+				<param name="salign" value="" />
+				<param name="allowScriptAccess" value="sameDomain" />
+				<!--[if !IE]>-->
+				<object type="application/x-shockwave-flash" data="twitter.swf" width="150" height="120" id="twitter2">
+					<param name="movie" value="twitter.swf" />
+					<param name="quality" value="high" />
+					<param name="bgcolor" value="#ffffff" />
+					<param name="play" value="true" />
+					<param name="loop" value="true" />
+					<param name="wmode" value="transparent" />
+					<param name="scale" value="showall" />
+					<param name="menu" value="true" />
+					<param name="devicefont" value="false" />
+					<param name="salign" value="" />
+					<param name="allowScriptAccess" value="sameDomain" />
+				<!--<![endif]-->
+					<a href="http://www.adobe.com/go/getflash">
+						<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Obtenir Adobe Flash Player" />
+					</a>
+				<!--[if !IE]>-->
+				</object>
+				<!--<![endif]-->
+			</object>
+		</div>
+		<p>sdfsdfsdkjf sdfjsdkjfhsdkjf hsdkfhdskhfksdjhf ksdjhf ksdhfkjhdsfkh sdkfjhsdfk sdf </p>
+		<script src="jquery.js"></script>
+		<script>
+		
+		var flash1;
+		var flash2;
+		var flash;
+		
+		$(function() {
+		
+			flash1 = document.getElementById("twitter");
+			flash2 = document.getElementById("twitter2");
+		
+			$(document).mousemove(function(e)
+			{
+			
+				if (!flash)
+				{
+					if (flash1.JScaptureCoordSouris != undefined) flash = flash1;
+					else if (flash2.JScaptureCoordSouris != undefined) flash = flash2;
+					else return;
+				}
+			
+				var flash_offset = $(flash).offset();
+
+				var x = e.pageX - flash_offset.left;
+				var y = e.pageY - flash_offset.top;
+				
+				sendToAS(x+'|'+y);
+				
+				
+			});
+		});
+		
+		function sendToAS(str)
+		{
+			try
+			{
+				flash.JScaptureCoordSouris(str);	
+			}
+			catch(e)
+			{
+				// Et alors ?
+			}
+		}
+		</script>
+	</body>
+</html>
