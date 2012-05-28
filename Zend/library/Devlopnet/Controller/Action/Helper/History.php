@@ -66,7 +66,7 @@ class Devlopnet_Controller_Action_Helper_History extends Zend_Controller_Action_
     public function redirectToBack($time = 0, $clear = true)
     {
         if (!is_int($time)) throw new InvalidArgumentException ('Time must be Integer');
-        $url = !empty($this->getBackUrl()) ? $this->getBackUrl() : $_SERVER['HTTP_REFERER'];
+        $url = $this->getBackUrl() ? $this->getBackUrl() : $_SERVER['HTTP_REFERER'];
 		if ($clear === true) $this->clearBack ();
 		if ($time > 0)
 		{
