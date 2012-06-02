@@ -75,9 +75,9 @@ class Devlopnet_Controller_Plugin_AclRequest extends Zend_Controller_Plugin_Abst
         return $this;
     }
     
-    public function checkRequest()
+    public function checkRequest(Zend_Controller_Request_Abstract $request = null)
     {       
-        $request = $this->getRequest();
+        $request = is_null($request) ? $this->getRequest() : $request;
         $requestElements = array(
             'module'        => $request->getModuleName(),
             'controller'    => $request->getControllerName(),
@@ -111,6 +111,12 @@ class Devlopnet_Controller_Plugin_AclRequest extends Zend_Controller_Plugin_Abst
     {
         if (!$this->_denyActionsDispatcher) {
             $this->_denyActionsDispatcher = new Devlopnet_Controller_Plugin_AclRequestAction_Dispatcher;
+			$exceptionAction = new Devlopnet_Controller_Plugin_AclRequestAction_Exception(array(
+                'exception' =>  'Zend_Controller_Action_Exception',
+                'message'   =>  'Forbidden',
+                'code'      =>  403
+            ));
+            $this->_denyActionsDispatcher->addAction($exceptionAction);
         }
         return $this->_denyActionsDispatcher;
     }
@@ -124,15 +130,6 @@ class Devlopnet_Controller_Plugin_AclRequest extends Zend_Controller_Plugin_Abst
     
     protected function _checkEvtDenied($requestElements, $userRole)
     {
-        if (count($this->getDenyActionDispatcher()->getActions()) == 0) {
-            
-            $exceptionAction = new Devlopnet_Controller_Plugin_AclRequestAction_Exception(array(
-                'exception' =>  'Zend_Controller_Action_Exception',
-                'message'   =>  'Forbidden',
-                'code'      =>  403
-            ));
-            $this->getDenyActionDispatcher()->addAction($exceptionAction);
-        }
         $this->getDenyActionDispatcher()
              ->setPlugin($this) 
              ->perform($requestElements, $userRole);

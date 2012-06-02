@@ -4,10 +4,21 @@ class Devlopnet_Controller_Action_Helper_AclRequest extends Zend_Controller_Acti
 {
     
     protected $_aclPlugin;
+	protected $_isOnlyFrontControllerRequest = false;
     
     public function __construct(Devlopnet_Controller_Plugin_AclRequest $aclPlugin) {
         $this->_aclPlugin = $aclPlugin;
     }
+	
+	public function setIsOnlyFrontControllerRequest($flag)
+	{
+		$this->_isOnlyFrontControllerRequest = (bool)$flag;
+	}
+	
+	public function isOnlyFrontControllerRequest()
+	{
+		return $this->_isOnlyFrontControllerRequest;
+	}
    
     public function preDispatch()
     {
@@ -15,7 +26,12 @@ class Devlopnet_Controller_Action_Helper_AclRequest extends Zend_Controller_Acti
         if (!method_exists($dispatcher->getControllerClass($this->getRequest()), $dispatcher->getActionMethod($this->getRequest()))) {
             throw new Zend_Controller_Action_Exception('Page not found', 404);
         }
-        $this->_aclPlugin->checkRequest();
+		if ($this->isOnlyFrontControllerRequest()) {
+			$request = Zend_Controller_Front::getInstance()->getRequest();
+		} else {
+			$request = $this->getRequest();
+		}
+        $this->_aclPlugin->checkRequest($request);
     }
     
 }
