@@ -1,6 +1,0 @@
-Plugin Subversion :
-
-Make subversion dump and synchronise them with SpiderOak
-Every args will be subversion dumped.
-
-Example : exe.sh subversion "dir1" "dir2" "dir3"
