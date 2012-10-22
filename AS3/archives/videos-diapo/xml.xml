@@ -1,9 +1,0 @@
-<videos directory=".">
-	<video commentaire="La vidéo d'un commando armé" image="test.jpg" src="" />
-	<video commentaire="Vidéo Blag" image="test.jpg" src="" />
-	<video commentaire="La vidéo du net" image="test.jpg" src="" />
-	<video commentaire="Mix top 10 vidéos" image="test.jpg" src="" />
-	<video commentaire="Dell Ultrasharp : tests" image="test.jpg" src="" />
-	<video commentaire="ColdFusion : Un ingénieur nous explique" image="test.jpg" src="" />
-	<video commentaire="PHP vs C#" image="test.jpg" src="" />
-</videos>
