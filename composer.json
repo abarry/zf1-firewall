@@ -1,0 +1,9 @@
+{
+    "name": "devlopnet/zf1-firewall",
+    "description": "Firewall component for Zend Framework 1",
+    "require": {
+        "zendframework/zendframework1": "1.*"
+    },
+    "license": "MIT",
+    "minimum-stability": "dev"
+}
