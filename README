@@ -1,12 +1,30 @@
 Licence Creative Commons Attribution
 http://creativecommons.org/licenses/by/2.0/fr/
 
-Vous êtes libre de :
+How to use
+----------
 
-- partager, reproduire, distribuer et communiquer l'oeuvre
-- remixer, adapter l'oeuvre
-- d’utiliser cette œuvre à des fins commerciales
+$frontPlugin = new \Devlopnet\Zf1\Firewall\FrontPlugin;    
+\Zend_Controller_Front::getInstance()->registerPlugin($frontPlugin);    
 
-Selon les conditions suivantes :
+$frontPlugin->addRole('common')    
+            ->addRole('guest', 'common')    
+            ->addRole('user', 'common');    
 
-Attribution — Vous devez attribuer l'oeuvre de la manière indiquée par l'auteur de l'oeuvre ou le titulaire des droits (mais pas d'une manière qui suggérerait qu'ils vous soutiennent ou approuvent votre utilisation de l'oeuvre).
+$frontPlugin->allow('all', 'default:error:*')    
+            ->allow('guest', 'default:auth:login')    
+            ->allow('guest', 'default:auth:register')    
+            ->allow('user', 'default:auth:logout');    
+            
+// You can also use allowMulti($role, array $routes);    
+
+$frontPlugin->onDeny(function($role, $request, $response) {    
+    throw new \My\DenyException;    
+});    
+
+
+if ($userConnected) {    
+    $frontPlugin->setCurrentRole('user');    
+} else {    
+    $frontPlugin->setCurrentRole('guest');    
+}
