@@ -5,5 +5,9 @@
         "zendframework/zendframework1": "1.*"
     },
     "license": "MIT",
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0": { "Devlopnet\\Zf1\\Firewall\\": "" }
+    },
+    "target-dir": "Devlopnet/Zf1/Firewall",
 }
