@@ -9,5 +9,5 @@
     "autoload": {
         "psr-0": { "Devlopnet\\Zf1\\Firewall\\": "" }
     },
-    "target-dir": "Devlopnet/Zf1/Firewall",
+    "target-dir": "Devlopnet/Zf1/Firewall"
 }
