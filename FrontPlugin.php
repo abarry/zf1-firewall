@@ -104,7 +104,7 @@ class FrontPlugin extends \Zend_Controller_Plugin_Abstract
 
         if (!$this->isAllowed($requestElements, $this->_userRole)) {
             if (!$this->_onDenyCallback) {
-                throw new \Zend_Controller_Action_Exception('Forbidden', 403);
+                throw new ForbiddenException;
             }
             call_user_func_array($this->_onDenyCallback, array($this->_userRole, $request, $response));
         }
