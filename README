@@ -1,9 +1,11 @@
+
 Licence Creative Commons Attribution
 http://creativecommons.org/licenses/by/2.0/fr/
 
 How to use
 ----------
 
+Hello Aubin 
 $frontPlugin = new \Devlopnet\Zf1\Firewall\FrontPlugin;    
 \Zend_Controller_Front::getInstance()->registerPlugin($frontPlugin);    
 
